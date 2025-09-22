@@ -39,3 +39,27 @@ body {
 .container {
   padding-bottom: 2rem;
 }
+
+/* Pokemon-sivu: kuvan skaalaus ja asettelu */
+#kuva2 img {
+  display: block;
+  margin: 0.5rem auto 1rem; /* keskitys + sopiva väli */
+  width: 100%;
+  max-width: 280px;         /* säädä esim. 200–360px */
+  height: auto;             /* näytä koko kuva ilman rajausta */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+
+/* Nappialue ja ominaisuudet */
+#actions { 
+  margin-bottom: 0.75rem; 
+}
+#ominaisuudet h3 {
+  font-size: 1.25rem;
+  margin-top: 0.5rem;
+}
+#ominaisuudet ul {
+  padding-left: 1.1rem; /* hieman sisennystä listalle */
+}
+
