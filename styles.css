@@ -40,3 +40,15 @@ body {
   padding-bottom: 2rem;
 }
 
+/* Pokemon-nimilista */
+.poke-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+}
+.poke-pill {
+  text-transform: capitalize; /* varmistaa ison alkukirjaimen */
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
