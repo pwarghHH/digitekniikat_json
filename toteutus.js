@@ -20,7 +20,7 @@ function naytaToteutus(obj) {
 
   let html = `
     <div class="card shadow-sm">
-      <img src="${encodeURI(obj.kuva)}" class="card-img-top" alt="Toteutuksen kuva">
+      <img src="${encodeURI(obj.kuva)}" class="card-img-top" alt="${escapeHtml(obj.kuva_alt || 'Toteutuksen kuva')}">
       <div class="card-body">
         <h3 class="card-title">${escapeHtml(obj.toteutus_nimi)}</h3>
         <p class="card-text">
