@@ -1,6 +1,5 @@
-// -----------------------------
 // OpenWeather asetukset
-// -----------------------------
+
 const API_KEY = "665ecd56dfc08dbb50feb8b8f5034e28"; // sama kuin tehtävän URL:ssa
 const BASE = "https://api.openweathermap.org/data/2.5/weather";
 const HELSINKI_ID = 658225; // Helsingin id tehtävän esimerkissä
@@ -11,11 +10,10 @@ const urlById = (id) =>
 const urlByCity = (q) =>
   `${BASE}?q=${encodeURIComponent(q)}&appid=${API_KEY}&lang=fi&units=metric`;
 
-// -----------------------------
-// Sivun lataushetken aika + datojen haku
-// -----------------------------
+// sivun lataus aika + datojen haku
+
 window.addEventListener("DOMContentLoaded", () => {
-  // JS-aika, kun sivu ladattiin
+
   const now = new Date();
   const aikaEl = document.getElementById("aika");
   if (aikaEl) {
@@ -31,7 +29,7 @@ window.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  // Hae Helsinki + Turku
+  // hae Hki + Turku
   haeHelsinkiJaTurku();
 });
 
@@ -44,13 +42,13 @@ async function haeHelsinkiJaTurku() {
   if (virheEl) virheEl.textContent = "";
 
   try {
-    // Haetaan kaksi pyyntöä rinnakkain: Helsinki id:llä, Turku nimellä
+    // kaksi pyyntöä
     const [hels, turku] = await Promise.all([
       fetch(urlById(HELSINKI_ID)).then(chk).then((r) => r.json()).catch((e) => ({ __error: { city: "Helsinki", e } })),
       fetch(urlByCity("Turku,FI")).then(chk).then((r) => r.json()).catch((e) => ({ __error: { city: "Turku", e } }))
     ]);
 
-    // Koostetaan kortit
+    // kooste
     const cards = [];
     cards.push(renderEither(hels));
     cards.push(renderEither(turku));
@@ -73,9 +71,8 @@ function renderEither(obj) {
   return renderCard(obj);
 }
 
-// -----------------------------
 // Kortin renderöinti
-// -----------------------------
+
 function renderCard(data) {
   const weather = (data.weather && data.weather[0]) || {};
   const kuvaus = capitalize(weather.description || "");
@@ -103,9 +100,8 @@ function cardError(city, err) {
   return `<div class="alert alert-danger">${escapeHtml(city)}: ${escapeHtml(err.message || "Virhe")}</div>`;
 }
 
-// -----------------------------
 // Apurit
-// -----------------------------
+
 function escapeHtml(str) {
   return String(str)
     .replaceAll("&", "&amp;")
