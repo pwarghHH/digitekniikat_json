@@ -1,18 +1,12 @@
-// ----------------------
-// Globaalit tilamuuttujat
-// ----------------------
 let currentPokemonData = null;
 let currentShownName = '';
 let showingBack = false;
 
-// Nimilistan sivutus
 let listOffset = 0;
 let listLimit = 50;     // montako nimeä per “sivu”
 let listTotalCount = 0; // API palauttaa kokonaismäärän
 
-// ----------------------
 // Tapahtumat
-// ----------------------
 
 // Enter-näppäin käynnistää haun
 document.addEventListener('keydown', (e) => {
@@ -21,26 +15,24 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Kun DOM on valmis, lataa ensimmäinen nimisivu ja kytke nappi
+// lataa ensimmäinen nimisivu 
 window.addEventListener('DOMContentLoaded', () => {
   const loadBtn = document.getElementById('btnLoadMore');
   if (loadBtn) {
     loadBtn.addEventListener('click', () => loadPokemonNames());
   }
-  // Lataa ensimmäinen erä nimiä
+  // lataa ensimmäinen erä nimiä
   resetNameList();
   loadPokemonNames();
 });
 
-// ----------------------
 // Haku nimellä
-// ----------------------
 function poke() {
   const inputEl = document.getElementById('pokemonName');
   const pokedNameTyped = inputEl.value.trim();
   const pokeName = pokedNameTyped.toLowerCase();
 
-  // Nollaa ilmoitusalueet
+  // nollaa ilmoitusalueet
   setError('');
   setHtml('kuva2', '');
   setHtml('actions', '');
@@ -66,7 +58,7 @@ function poke() {
     .catch((error) => setError(error.message || 'Tietoa ei pystytä hakemaan'));
 }
 
-// Näytä kuva + nimi + “Käännä”-nappi + 3 ominaisuutta
+// näytä kuva + nimi + “Käännä”-nappi + 3 ominaisuutta
 function pokekuva(obj, shownName) {
   const front = obj?.sprites?.front_default;
   const back = obj?.sprites?.back_default;
@@ -86,7 +78,7 @@ function pokekuva(obj, shownName) {
   const prettyName = shownName ? capitalize(shownName) : capitalize(obj.name || '');
   setHtml('nimi', `<b>${escapeHtml(prettyName)}</b>`);
 
-  // “Käännä” nappi (disabloidaan, jos takakuvaa ei ole)
+  // “Käännä” nappi (jos takakuvaa ei ole niin pois käytöstä)
   const btnDisabled = !back;
   const btnLabel = showingBack ? 'Etupuoli' : 'Käännä';
   setHtml(
@@ -97,7 +89,7 @@ function pokekuva(obj, shownName) {
   );
   if (btnDisabled) setError('Tälle Pokemonille ei ole takakuvaa.');
 
-  // 3 ominaisuutta: tyypit, pituus (m), paino (kg)
+  // 3 ominaisuutta: tyyppi, pituus, paino
   const types = (obj.types || [])
     .map((t) => capitalize(t?.type?.name || ''))
     .filter(Boolean)
@@ -116,16 +108,15 @@ function pokekuva(obj, shownName) {
   );
 }
 
-// Nappi: vaihda etupuoli ↔ takapuoli
+// vaihda etupuoli ↔ takapuoli
 function kaanna() {
   if (!currentPokemonData) return;
   showingBack = !showingBack;
   pokekuva(currentPokemonData, currentShownName);
 }
 
-// ----------------------
-// Pokemon-nimilista (sivutus + “Lataa lisää”)
-// ----------------------
+// Pokemon-nimilista 
+
 function resetNameList() {
   listOffset = 0;
   listTotalCount = 0;
@@ -192,9 +183,8 @@ function choosePokemon(name) {
   poke();
 }
 
-// ----------------------
 // Apurit
-// ----------------------
+
 function setHtml(id, html) {
   const el = document.getElementById(id);
   if (el) el.innerHTML = html;
