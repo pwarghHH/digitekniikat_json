@@ -21,17 +21,17 @@ body {
 /* Etusivun kuva*/
 #vastaus img {
   width: 100%;
-  max-height: 220px;   /* säädä esim. 180–320px */
-  object-fit: cover;   /* leikkaa reunoja siististi */
+  max-height: 220px;  
+  object-fit: cover;   
   border-radius: 8px;
   margin: 1rem 0;
 }
 
-/* Toteutus-sivun korttikuvan rajaus */
+/* Toteutus-sivun kuva */
 .card-img-top {
   width: 100%;
-  max-height: 220px;   /* sama korkeus, voit säätää */
-  object-fit: cover;   /* leikkaa reunoja siististi */
+  max-height: 300px;   
+  object-fit: cover;   
   border-radius: 8px;
 }
 
