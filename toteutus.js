@@ -14,9 +14,7 @@ function naytaToteutus(obj) {
 
   const alku = new Date(obj.alku);
   const loppu = new Date(obj.loppu);
-
-  const pvmFi = (d) =>
-    d.toLocaleDateString('fi-FI', { day: 'numeric', month: 'numeric', year: 'numeric' });
+  const pvmFi = (d) => d.toLocaleDateString('fi-FI', { day: 'numeric', month: 'numeric', year: 'numeric' });
 
   let html = `
     <div class="card shadow-sm">
@@ -35,7 +33,6 @@ function naytaToteutus(obj) {
       </div>
     </div>
   `;
-
   root.innerHTML = html;
 }
 
@@ -47,3 +44,4 @@ function escapeHtml(str) {
     .replaceAll('"', '&quot;')
     .replaceAll("'", '&#39;');
 }
+
