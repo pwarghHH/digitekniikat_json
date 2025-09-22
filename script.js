@@ -1,13 +1,13 @@
-// Haetaan oma JSON-tiedosto
+// haetaan oma JSON-tiedosto
 fetch('./tietue.json')
   .then(function (response) {
     if (!response.ok) {
       throw new Error('HTTP-virhe: ' + response.status);
     }
-    return response.json(); // Muutetaan JSON → JS-olioksi
+    return response.json(); // muutetaan JSON → JS-olioksi
   })
   .then(function (responseJson) {
-    kerro(responseJson); // Kutsutaan omaa funktiota
+    kerro(responseJson); // kutsu omaa funktiota
   })
   .catch(function (error) {
     console.error(error);
@@ -15,7 +15,7 @@ fetch('./tietue.json')
       'Tietoa ei pystytä hakemaan.';
   });
 
-// Funktio, joka rakentaa HTML-sisällön
+// html-sisältö
 function kerro(obj) {
   let tiedot = `
     <h2>${escapeHtml(obj.otsikko)}</h2>
@@ -28,7 +28,7 @@ function kerro(obj) {
     Opintopisteet: ${obj.opintojakso.opintopisteet}<br>
   `;
 
-  // Aiheet (sisältö-taulukko)
+  // aiheet (sisältö-taulukko)
   if (Array.isArray(obj.sisalto)) {
     tiedot += '<h3>Aiheet</h3><ul>';
     for (let i = 0; i < obj.sisalto.length; i++) {
@@ -37,7 +37,7 @@ function kerro(obj) {
     tiedot += '</ul>';
   }
 
-  // Tekniikat (taulukko olioita)
+  // tekniikat (taulukko olioita)
   if (Array.isArray(obj.tekniikat)) {
     tiedot += '<h3>Tekniikat</h3>';
     for (let i = 0; i < obj.tekniikat.length; i++) {
@@ -53,7 +53,6 @@ function kerro(obj) {
   document.getElementById('vastaus').innerHTML = tiedot;
 }
 
-// Apufunktio: estetään vaarallisen HTML:n ruiskutus
 function escapeHtml(str) {
   return String(str)
     .replaceAll('&', '&amp;')
