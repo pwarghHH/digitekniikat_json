@@ -1,11 +1,11 @@
-/* Yleinen tausta */
+/* yleinen  */
 body {
   background-color: #f8fafc; /* vaalea harmaa */
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.6;
 }
 
-/* Navigaation väri */
+/* navigaatio väri */
 .navbar {
   background-color: #0d6efd !important;
 }
@@ -18,7 +18,7 @@ body {
   text-decoration: underline;
 }
 
-/* Etusivun kuva*/
+/* etusivun kuva*/
 #vastaus img {
   width: 100%;
   max-height: 300px;  
@@ -27,7 +27,7 @@ body {
   margin: 1rem 0;
 }
 
-/* Toteutus-sivun kuva */
+/* toteutus-sivun kuva */
 .card-img-top {
   width: 100%;
   max-height: 300px;   
@@ -35,7 +35,7 @@ body {
   border-radius: 8px;
 }
 
-/* Viimeistelyä */
+/* viimeistelyä */
 .container {
   padding-bottom: 2rem;
 }
@@ -47,7 +47,7 @@ body {
   gap: 8px;
 }
 .poke-pill {
-  text-transform: capitalize; /* varmistaa ison alkukirjaimen */
+  text-transform: capitalize; /* iso alkukirjain */
   border-radius: 9999px;
   box-shadow: 0 2px 8px rgba(0,0,0,.06);
 }
